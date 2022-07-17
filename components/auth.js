@@ -57,4 +57,15 @@ function sendQr(res) {
   });
 }
 
+router.get('/user', (_, res) => {
+  if (client && client.info && client.info.me) {
+      let me = client.info
+      client.getProfilePicUrl(`${client.info.me.user}@c.us`).then((imgurl) => {
+          console.log('imgurl:'. imgurl)
+          if (imgurl) me.imgUrl = imgurl
+          res.send(JSON.stringify(me))
+      })
+  }
+});
+
 module.exports = router;
