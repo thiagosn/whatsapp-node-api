@@ -1,9 +1,13 @@
 const router = require('express').Router();
 
 router.get('/getcontacts', (req, res) => {
-    client.getContacts().then((contacts) => {
-        res.send(JSON.stringify(contacts));
-    });
+    if (client && client.info) {
+        client.getContacts().then((contacts) => {
+            res.send(JSON.stringify(contacts));
+        });
+    } else {
+        res.send("DISCONNECTED");
+    }
 });
 
 router.get('/getcontact/:phone', async (req, res) => {

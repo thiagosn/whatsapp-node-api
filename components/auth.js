@@ -65,6 +65,8 @@ router.get('/user', (_, res) => {
           if (imgurl) me.imgUrl = imgurl
           res.send(JSON.stringify(me))
       })
+  } else {
+    res.send("DISCONNECTED");
   }
 });
 
